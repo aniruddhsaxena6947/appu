@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hey Aparna 🌸</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: linear-gradient(145deg, #3a2740 0%, #4a3050 45%, #382244 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #f5eaf0;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      width: 100%;
+      animation: pageFadeIn 0.8s ease forwards;
+    }
+    .page.active { display: block; }
+
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ───── PARTICLES ───── */
+    #particles {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      bottom: -40px;
+      font-size: 18px;
+      color: #f5d9f0;
+      opacity: 0.2;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+      25%  { opacity: 0.25; }
+      75%  { opacity: 0.15; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ───── GLASS CARD ───── */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* ───── LANDING ───── */
+    #page1 {
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    #page1.active { display: flex; }
+
+    .landing-card {
+      max-width: 520px;
+      width: 100%;
+      padding: 52px 40px 48px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .landing-card h1 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 400;
+      color: #fce4f5;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+    .landing-card .sub {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #dcc6e0;
+      margin-bottom: 36px;
+      font-style: italic;
+    }
+
+    .pill-btn {
+      display: inline-block;
+      padding: 14px 42px;
+      border: none;
+      border-radius: 60px;
+      background: linear-gradient(135deg, #d4739d, #b35d86);
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 24px rgba(180, 80, 140, 0.35);
+    }
+    .pill-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 34px rgba(180, 80, 140, 0.5);
+    }
+    .pill-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* ───── PAGE 2 ───── */
+    #page2 {
+      position: relative;
+      z-index: 1;
+      padding: 40px 24px 60px;
+    }
+    #page2.active { display: block; }
+
+    .page2-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ───── HERO ───── */
+    .hero {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .hero-photos {
+      position: relative;
+      flex-shrink: 0;
+      width: 180px;
+      height: 180px;
+    }
+    .photo-box {
+      position: absolute;
+      width: 145px;
+      height: 155px;
+      border-radius: 14px;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #dcc6e0;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .photo-box img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-1 {
+      top: 0; left: 0;
+      transform: rotate(-4deg);
+      z-index: 2;
+    }
+    .photo-2 {
+      top: 20px; left: 20px;
+      transform: rotate(4deg);
+      z-index: 1;
+    }
+
+    .hero-text { flex: 1; min-width: 0; }
+    .hero-text h2 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #fce4f5;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .hero-text .meaning {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #d4c0d9;
+      font-style: italic;
+    }
+
+    /* ───── SECTION HEADER ───── */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c4a8cd;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    /* ───── TRAITS ───── */
+    .traits {
+      margin-bottom: 52px;
+      padding: 0 8px;
+    }
+    .traits ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .traits li {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      font-style: italic;
+      color: #ebd8ef;
+      padding: 6px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .traits li .emoji {
+      font-style: normal;
+      flex-shrink: 0;
+      font-size: 1.15rem;
+      margin-top: 3px;
+    }
+
+    /* ───── NOTE ───── */
+    .note-box {
+      padding: 32px 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      margin-bottom: 48px;
+    }
+    .note-box p {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #ebd8ef;
+      white-space: pre-line;
+    }
+    .note-hint {
+      font-size: 0.7rem;
+      color: #a888b3;
+      margin-top: 14px;
+      text-align: right;
+      letter-spacing: 0.3px;
+    }
+
+    /* ───── FOOTER ───── */
+    .page2-footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #c4a8cd;
+      letter-spacing: 0.3px;
+    }
+
+    /* ───── REVEAL ON SCROLL ───── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 640px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+      }
+      .hero-photos {
+        width: 170px;
+        height: 170px;
+      }
+      .photo-box {
+        width: 140px;
+        height: 150px;
+      }
+      .photo-2 {
+        top: 18px; left: 18px;
+      }
+      .hero-text h2 {
+        text-align: center;
+      }
+      .hero-text .meaning {
+        text-align: center;
+      }
+      .landing-card {
+        padding: 36px 24px 32px;
+      }
+      .note-box {
+        padding: 24px 20px;
+      }
+      #page2 {
+        padding: 24px 16px 40px;
+      }
+      .traits li {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-photos {
+        width: 140px;
+        height: 140px;
+      }
+      .photo-box {
+        width: 120px;
+        height: 130px;
+      }
+      .photo-2 {
+        top: 14px; left: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── PARTICLES ─── -->
+  <div id="particles"></div>
+
+  <!-- ════════════════════════ PAGE 1 ════════════════════════ -->
+  <div id="page1" class="page active">
+    <div class="glass landing-card">
+      <h1>Hey Aparna 🌸</h1>
+      <p class="sub">Hey Aparna, just made this small thing for you 🌸</p>
+      <button class="pill-btn" id="goBtn">Tap this when you're feeling low</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ PAGE 2 ════════════════════════ -->
+  <div id="page2" class="page">
+    <div class="page2-inner">
+
+      <!-- HERO -->
+      <div class="hero reveal">
+        <div class="hero-photos">
+          <div class="photo-box photo-1"><img src="photo1.png" alt="photo 1"></div>
+          <div class="photo-box photo-2"><img src="photo2.png" alt="photo 2"></div>
+        </div>
+        <div class="hero-text">
+          <h2>Hey Aparna</h2>
+          <p class="meaning">Aparna — a name meaning 'leafless one,' an epithet of Goddess Parvati, symbolizing quiet strength and devotion.</p>
+        </div>
+      </div>
+
+      <!-- TRAITS -->
+      <section class="traits reveal">
+        <div class="section-label">A Few Things About Her</div>
+        <ul>
+          <li><span class="emoji">🌙</span> she loves watching the moon at night, and honestly she reminds me of it too — calm, soft, always there in her own quiet way</li>
+          <li><span class="emoji">💗</span> she's kind to literally everyone, like it just comes naturally to her, no effort</li>
+          <li><span class="emoji">🎵</span> she sings really well, like genuinely good, not just "good for fun" good</li>
+          <li><span class="emoji">✍️</span> she doesn't just read novels, she writes too, and she's actually really good at it</li>
+        </ul>
+      </section>
+
+      <!-- NOTE -->
+      <section class="reveal">
+        <div class="section-label">A Little Note for You</div>
+        <div class="note-box">
+          <p>Hey, we haven't really talked that much, but you're genuinely a really good friend. And seriously, you don't look good when you're sad — at all. You're that mastikhor, chaotic, energetic person, that's who suits you. So fix your mood quickly and just stay like that. And whenever you're feeling low, message me, no tension at all.
+
+(and bde aadmi bnke mujhe bhool mt jaiyo okk marathi mulgi (chuhiya) 😄)</p>
+          <div class="note-hint">↑ edit this text directly to personalize it</div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <div class="page2-footer reveal">— from someone who may be far, but still thinks of you</div>
+
+    </div>
+  </div>
+
+  <script>
+    // ─── PARTICLES ───
+    (function initParticles() {
+      const symbols = ['✦', '♡', '✧', '❀'];
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 28; i++) {
+        const el = document.createElement('span');
+        el.className = 'particle';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = (Math.random() * 100) + '%';
+        el.style.fontSize = (12 + Math.random() * 16) + 'px';
+        el.style.animationDuration = (14 + Math.random() * 18) + 's';
+        el.style.animationDelay = (Math.random() * 20) + 's';
+        container.appendChild(el);
+      }
+    })();
+
+    // ─── PAGE TRANSITION ───
+    document.getElementById('goBtn').addEventListener('click', function () {
+      const p1 = document.getElementById('page1');
+      const p2 = document.getElementById('page2');
+      p1.classList.remove('active');
+      p2.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      // re-trigger scroll animations
+      setTimeout(observeAll, 100);
+    });
+
+    // ─── SCROLL REVEAL ───
+    function observeAll() {
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => obs.observe(el));
+    }
+    observeAll();
+  </script>
+</body>
+</html>
